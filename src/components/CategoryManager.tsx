@@ -116,7 +116,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
                   <span className="font-black uppercase tracking-widest text-[10px]">Back</span>
                 </button>
                 <h1 className="text-3xl font-black text-white tracking-tighter uppercase">
-                  {currentView === 'add' ? 'New' : 'Refine'} <span className="text-steak-gold">Classification</span>
+                  {currentView === 'add' ? 'Add New' : 'Edit'} <span className="text-steak-gold">Category</span>
                 </h1>
               </div>
               <div className="flex space-x-4">
@@ -130,7 +130,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
                   onClick={handleSaveCategory}
                   className="px-8 py-2.5 bg-steak-gold text-steak-black rounded-xl hover:bg-white transition-all duration-300 font-black uppercase tracking-widest text-[10px] shadow-[0_0_20px_rgba(244,164,30,0.2)]"
                 >
-                  Authorize Updates
+                  <span>Save Category</span>
                 </button>
               </div>
             </div>
@@ -141,7 +141,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
           <div className="bg-steak-charcoal rounded-3xl shadow-2xl p-10 border border-steak-gold/10 ring-1 ring-white/5">
             <div className="space-y-10">
               <div>
-                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Category Designation *</label>
+                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Category Name *</label>
                 <input
                   type="text"
                   value={formData.name}
@@ -152,7 +152,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">System Identity *</label>
+                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Category ID *</label>
                 <input
                   type="text"
                   value={formData.id}
@@ -163,15 +163,15 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
                 />
                 <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-3 ml-2">
                   {currentView === 'edit'
-                    ? 'PROTECTED: IDENTITY CANNOT BE MODIFIED'
-                    : 'LOGIC: hot-drinks, signature-cuts, etc.'
+                    ? 'Category ID cannot be changed'
+                    : 'Example: hot-drinks, steaks, etc.'
                   }
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Visual Anchor *</label>
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Icon *</label>
                   <div className="flex items-center space-x-4">
                     <input
                       type="text"
@@ -187,7 +187,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Logic Weight</label>
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Sort Order</label>
                   <input
                     type="number"
                     value={formData.sort_order}
@@ -212,7 +212,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
                   <div className={`w-14 h-8 rounded-full transition-all duration-500 border-2 ${formData.active ? 'bg-steak-gold/20 border-steak-gold' : 'bg-steak-black border-white/10'}`}>
                     <div className={`absolute top-1 left-1 w-6 h-6 rounded-full transition-all duration-500 ${formData.active ? 'translate-x-6 bg-steak-gold' : 'bg-gray-600'}`}></div>
                   </div>
-                  <span className="ml-4 text-[10px] font-black text-white uppercase tracking-[0.2em] group-hover:text-steak-gold transition-colors">Manifest Active</span>
+                  <span className="ml-4 text-[10px] font-black text-white uppercase tracking-[0.2em] group-hover:text-steak-gold transition-colors">Active</span>
                 </label>
               </div>
             </div>
@@ -234,16 +234,16 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
                 className="flex items-center space-x-3 text-gray-500 hover:text-white transition-all duration-300 group"
               >
                 <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
-                <span className="font-black uppercase tracking-widest text-[10px]">Command Center</span>
+                <span className="font-black uppercase tracking-widest text-[10px]">Dashboard</span>
               </button>
-              <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Classification <span className="text-steak-gold">Matrix</span></h1>
+              <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Category <span className="text-steak-gold">Management</span></h1>
             </div>
             <button
               onClick={handleAddCategory}
               className="flex items-center space-x-3 bg-steak-gold text-steak-black px-8 py-3 rounded-xl hover:bg-white transition-all duration-300 font-black uppercase tracking-widest text-[10px] shadow-[0_0_30px_rgba(244,164,30,0.2)]"
             >
               <Plus className="h-4 w-4" />
-              <span>Expand Map</span>
+              <span>Add Category</span>
             </button>
           </div>
         </div>
@@ -253,20 +253,20 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
         <div className="bg-steak-charcoal rounded-3xl shadow-2xl overflow-hidden border border-white/5">
           <div className="p-10">
             <div className="flex items-center justify-between mb-10">
-              <h2 className="text-sm font-black text-steak-gold uppercase tracking-[0.3em]">Logical Strata</h2>
+              <h2 className="text-sm font-black text-steak-gold uppercase tracking-[0.3em]">All Categories</h2>
               <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest bg-steak-black px-4 py-1.5 rounded-full border border-white/5">
-                {categories.length} Nodes Active
+                {categories.length} Categories Active
               </span>
             </div>
 
             {categories.length === 0 ? (
               <div className="text-center py-20 bg-steak-black/20 rounded-3xl border border-dashed border-white/5">
-                <p className="text-gray-600 font-black uppercase tracking-widest text-[10px] mb-8">No logical units identified</p>
+                <p className="text-gray-600 font-black uppercase tracking-widest text-[10px] mb-8">No categories found</p>
                 <button
                   onClick={handleAddCategory}
                   className="bg-steak-gold/10 text-steak-gold px-8 py-3 rounded-xl border border-steak-gold/20 hover:bg-steak-gold hover:text-steak-black transition-all duration-300 font-black uppercase tracking-widest text-[10px]"
                 >
-                  Initiate First Node
+                  Add First Category
                 </button>
               </div>
             ) : (
@@ -295,7 +295,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
                         ? 'bg-steak-gold/10 text-steak-gold border-steak-gold/20'
                         : 'bg-white/5 text-gray-600 border-white/5'
                         }`}>
-                        {category.active ? 'Operational' : 'Deactivated'}
+                        {category.active ? 'Active' : 'Inactive'}
                       </span>
 
                       <div className="flex items-center space-x-2">

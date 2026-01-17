@@ -113,8 +113,8 @@ const SiteSettingsManager: React.FC = () => {
               <Settings className="h-6 w-6 text-steak-black" />
             </div>
             <div>
-              <h2 className="text-2xl font-black text-white tracking-tighter uppercase">Platform <span className="text-steak-gold">Architecture</span></h2>
-              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mt-1">Core System Parameters</p>
+              <h2 className="text-2xl font-black text-white tracking-tighter uppercase">Site <span className="text-steak-gold">Settings</span></h2>
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mt-1">General site configuration</p>
             </div>
           </div>
 
@@ -123,7 +123,7 @@ const SiteSettingsManager: React.FC = () => {
               onClick={() => setIsEditing(true)}
               className="px-8 py-3 bg-steak-gold text-steak-black rounded-xl hover:bg-white transition-all duration-300 font-black uppercase tracking-widest text-[10px] shadow-[0_0_20px_rgba(244,164,30,0.2)]"
             >
-              Modify Logic
+              Edit Settings
             </button>
           ) : (
             <div className="flex space-x-4">
@@ -138,7 +138,7 @@ const SiteSettingsManager: React.FC = () => {
                 disabled={uploading}
                 className="px-8 py-3 bg-steak-gold text-steak-black rounded-xl hover:bg-white transition-all duration-300 font-black uppercase tracking-widest text-[10px] shadow-[0_0_20px_rgba(244,164,30,0.2)] disabled:opacity-50"
               >
-                {uploading ? 'Finalizing...' : 'Authorize Changes'}
+                {uploading ? 'Finalizing...' : 'Save Changes'}
               </button>
             </div>
           )}
@@ -163,8 +163,8 @@ const SiteSettingsManager: React.FC = () => {
             </div>
 
             <div className="flex-1">
-              <h3 className="text-[10px] font-black text-steak-gold uppercase tracking-[0.3em] mb-2">Visual Hallmark</h3>
-              <p className="text-sm text-gray-500 mb-6 uppercase font-bold">The primary brand identity displayed across the vault.</p>
+              <h3 className="text-[10px] font-black text-steak-gold uppercase tracking-[0.3em] mb-2">Site Logo</h3>
+              <p className="text-sm text-gray-500 mb-6 uppercase font-bold">The primary brand identity displayed across the site.</p>
 
               {isEditing && (
                 <div>
@@ -180,7 +180,7 @@ const SiteSettingsManager: React.FC = () => {
                     className="inline-flex items-center space-x-3 px-6 py-2.5 bg-white/5 text-white hover:bg-white/10 rounded-xl border border-white/5 transition-all duration-300 font-black uppercase tracking-widest text-[10px] cursor-pointer"
                   >
                     <Upload className="h-4 w-4 text-steak-gold" />
-                    <span>Upload New Asset</span>
+                    <span>Upload New Logo</span>
                   </label>
                 </div>
               )}
@@ -192,7 +192,7 @@ const SiteSettingsManager: React.FC = () => {
             <div>
               <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3 flex items-center gap-2">
                 <Shield className="h-3 w-3" />
-                Platform Designation
+                Site Name
               </label>
               {isEditing ? (
                 <input
@@ -213,7 +213,7 @@ const SiteSettingsManager: React.FC = () => {
             {/* Site Description */}
             <div>
               <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">
-                Operational Narrative
+                Site Description
               </label>
               {isEditing ? (
                 <textarea
@@ -236,7 +236,7 @@ const SiteSettingsManager: React.FC = () => {
               <div>
                 <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3 flex items-center gap-2">
                   <Globe className="h-3 w-3" />
-                  Fiscal Symbol
+                  Currency Symbol
                 </label>
                 {isEditing ? (
                   <input
@@ -255,7 +255,7 @@ const SiteSettingsManager: React.FC = () => {
               </div>
               <div>
                 <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">
-                  Monetary Protocol
+                  Currency Code
                 </label>
                 {isEditing ? (
                   <input

@@ -121,7 +121,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             )}
             {item.popular && (
               <div className="bg-steak-gold text-steak-black text-[10px] font-black px-3 py-1.5 rounded-lg shadow-2xl tracking-tighter">
-                SIGNATURE
+                BEST SELLER
               </div>
             )}
           </div>
@@ -227,8 +227,8 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
           <div className="bg-steak-charcoal border border-steak-gold/20 rounded-3xl max-w-md w-full max-h-[90vh] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col">
             <div className="sticky top-0 bg-steak-charcoal/80 backdrop-blur-md border-b border-steak-gold/10 p-6 flex items-center justify-between z-10">
               <div>
-                <h3 className="text-xl md:text-2xl font-black text-white tracking-tight uppercase">Tailor Your <span className="text-steak-gold">Meat</span></h3>
-                <p className="text-xs text-gray-500 mt-1 uppercase tracking-widest font-bold">Chef's Customizations</p>
+                <h3 className="text-xl md:text-2xl font-black text-white tracking-tight uppercase">Customize Your <span className="text-steak-gold">Order</span></h3>
+                <p className="text-xs text-gray-500 mt-1 uppercase tracking-widest font-bold">Options & Add-ons</p>
               </div>
               <button
                 onClick={() => setShowCustomization(false)}
@@ -339,7 +339,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
             <div className="p-6 bg-steak-charcoal border-t border-steak-gold/10">
               <div className="flex items-center justify-between mb-6">
-                <span className="text-gray-400 font-bold uppercase tracking-widest text-xs">Total Estimation</span>
+                <span className="text-gray-400 font-bold uppercase tracking-widest text-xs">Total Price</span>
                 <span className="text-3xl font-black text-steak-gold">₱{calculatePrice().toFixed(2)}</span>
               </div>
 
@@ -348,7 +348,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
                 className="w-full bg-steak-gold text-steak-black py-5 rounded-2xl hover:bg-white transition-all duration-300 font-black uppercase tracking-widest text-sm flex items-center justify-center space-x-3 shadow-[0_0_30px_rgba(244,164,30,0.2)]"
               >
                 <ShoppingCart className="h-5 w-5" />
-                <span>Confirm Selection</span>
+                <span>Add to Cart</span>
               </button>
             </div>
           </div>

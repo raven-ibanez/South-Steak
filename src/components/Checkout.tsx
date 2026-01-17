@@ -62,15 +62,15 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalPrice, onBack }) =>
     const orderDetails = `
 🥩 SOUTH STEAK ORDER
 
-👤 Patron: ${customerName}
+👤 Customer: ${customerName}
 📞 Contact: ${contactNumber}
 📍 Service: ${serviceType.charAt(0).toUpperCase() + serviceType.slice(1)}
-${serviceType === 'delivery' ? `🏠 Delivery Hub: ${address}${landmark ? `\n🗺️ Signature Landmark: ${landmark}` : ''}` : ''}
-${serviceType === 'pickup' ? `⏰ Reserving for: ${timeInfo}` : ''}
+${serviceType === 'delivery' ? `🏠 Address: ${address}${landmark ? `\n🗺️ Landmark: ${landmark}` : ''}` : ''}
+${serviceType === 'pickup' ? `⏰ Pickup Time: ${timeInfo}` : ''}
 ${serviceType === 'dine-in' ? dineInInfo : ''}
 
 
-📋 CURATED SELECTION:
+📋 YOUR ORDER:
 ${cartItems.map(item => {
       let itemDetails = `• ${item.name.toUpperCase()}`;
       if (item.selectedVariation) {
@@ -87,13 +87,13 @@ ${cartItems.map(item => {
       return itemDetails;
     }).join('\n')}
 
-💰 TOTAL INVESTMENT: ₱${totalPrice.toFixed(2)}
+💰 TOTAL AMOUNT: ₱${totalPrice.toFixed(2)}
 ${serviceType === 'delivery' ? `🛵 DELIVERY FEE: [To be confirmed]` : ''}
 
-💳 SECURE PAYMENT: ${selectedPaymentMethod?.name || paymentMethod}
-📸 VERIFICATION: [Please attach payment verification]
+💳 PAYMENT METHOD: ${selectedPaymentMethod?.name || paymentMethod}
+📸 VERIFICATION: [Please attach screenshot of payment]
 
-${notes ? `📝 PATRON NOTES: ${notes}` : ''}
+${notes ? `📝 NOTES: ${notes}` : ''}
 
 Thank you for choosing South Steak. Exceptionally grilled for you. �
     `.trim();
@@ -119,9 +119,9 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
             className="flex items-center space-x-3 text-gray-500 hover:text-white transition-all duration-300 group"
           >
             <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="font-bold uppercase tracking-widest text-xs">Return to Selection</span>
+            <span className="font-bold uppercase tracking-widest text-xs">Back to Cart</span>
           </button>
-          <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase">Dining <span className="text-steak-gold">Logistics</span></h1>
+          <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase">Check<span className="text-steak-gold">out</span></h1>
           <div className="hidden md:block w-32 h-px bg-steak-gold/20" />
         </div>
 
@@ -131,7 +131,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
             <div className="bg-steak-charcoal rounded-3xl p-8 border border-steak-gold/10 ring-1 ring-white/5 shadow-2xl sticky top-32">
               <h2 className="text-2xl font-black text-white mb-8 uppercase tracking-tight flex items-center gap-3">
                 <span className="w-1.5 h-6 bg-steak-gold rounded-full" />
-                Reserved Selection
+                Order Summary
               </h2>
 
               <div className="space-y-6 mb-8 max-h-[40vh] overflow-y-auto scrollbar-hide pr-2">
@@ -144,7 +144,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
                           <span className="text-[10px] font-black uppercase text-gray-500 bg-white/5 px-2 py-0.5 rounded tracking-widest">{item.selectedVariation.name}</span>
                         )}
                         {item.selectedAddOns && item.selectedAddOns.length > 0 && (
-                          <span className="text-[10px] font-black uppercase text-steak-gold/60 bg-steak-gold/5 px-2 py-0.5 rounded tracking-widest">+{item.selectedAddOns.length} Extras</span>
+                          <span className="text-[10px] font-black uppercase text-steak-gold/60 bg-steak-gold/5 px-2 py-0.5 rounded tracking-widest">+{item.selectedAddOns.length} Add-ons</span>
                         )}
                       </div>
                       <p className="text-xs text-gray-500 mt-2 font-bold tracking-widest uppercase">₱{item.totalPrice.toFixed(2)} x {item.quantity}</p>
@@ -156,7 +156,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
 
               <div className="border-t-2 border-steak-gold/20 pt-8 mt-2">
                 <div className="flex items-center justify-between text-2xl md:text-3xl font-black text-white">
-                  <span className="uppercase tracking-tighter">Total Due</span>
+                  <span className="uppercase tracking-tighter">Total Amount</span>
                   <span className="text-steak-gold">₱{totalPrice.toFixed(2)}</span>
                 </div>
               </div>
@@ -168,7 +168,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
             <div className="bg-steak-charcoal rounded-3xl p-8 md:p-12 border border-steak-gold/10 ring-1 ring-white/5 shadow-2xl">
               <h2 className="text-2xl font-black text-white mb-10 uppercase tracking-tight flex items-center gap-3">
                 <span className="w-1.5 h-6 bg-steak-gold rounded-full" />
-                Patron Information
+                Customer Information
               </h2>
 
               <form className="space-y-8" onSubmit={(e) => { e.preventDefault(); handleProceedToPayment(); }}>
@@ -199,7 +199,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
 
                 {/* Service Type */}
                 <div className="space-y-4">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] ml-2">Dining Preference</label>
+                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] ml-2">Order Type</label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-4">
                     {[
                       { value: 'dine-in', label: 'Dine In', icon: '🪑' },
@@ -305,7 +305,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
                   {serviceType === 'delivery' && (
                     <div className="space-y-6">
                       <div className="space-y-4">
-                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] ml-2">Delivery Hub</label>
+                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] ml-2">Delivery Address</label>
                         <textarea
                           className="w-full bg-steak-black/60 border border-white/5 rounded-2xl px-6 py-5 text-white placeholder-white/20 focus:ring-2 focus:ring-steak-gold outline-none font-bold tracking-tight min-h-[120px]"
                           placeholder="COMPLETE RESIDENTIAL OR OFFICE ADDRESS"
@@ -316,7 +316,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
                       </div>
 
                       <div className="space-y-4">
-                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] ml-2">Signature Landmark</label>
+                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] ml-2">Landmark</label>
                         <input
                           type="text"
                           className="w-full bg-steak-black/60 border border-white/5 rounded-2xl px-6 py-5 text-white placeholder-white/20 focus:ring-2 focus:ring-steak-gold outline-none font-bold tracking-tight"
@@ -330,7 +330,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
 
                   {/* Special Notes */}
                   <div className="space-y-4">
-                    <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] ml-2">Patron Notes</label>
+                    <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] ml-2">Additional Notes</label>
                     <textarea
                       className="w-full bg-steak-black/60 border border-white/5 rounded-2xl px-6 py-5 text-white placeholder-white/20 focus:ring-2 focus:ring-steak-gold outline-none font-bold tracking-tight min-h-[120px]"
                       placeholder="ANY SPECIAL REQUESTS (E.G., MEDIUM RARE, ALLERGIES)"
@@ -348,7 +348,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
                       : 'bg-white/5 text-gray-600 border border-white/5 cursor-not-allowed'
                       }`}
                   >
-                    Authorize Payment Step
+                    Continue to Payment
                   </button>
                 </div>
               </form>
@@ -368,9 +368,9 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
           className="flex items-center space-x-3 text-gray-500 hover:text-white transition-all duration-300 group"
         >
           <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
-          <span className="font-bold uppercase tracking-widest text-xs">Back to Logistics</span>
+          <span className="font-bold uppercase tracking-widest text-xs">Back to Details</span>
         </button>
-        <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase">Vault <span className="text-steak-gold">Access</span></h1>
+        <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase">Pay<span className="text-steak-gold">ment</span></h1>
         <div className="hidden md:block w-32 h-px bg-steak-gold/20" />
       </div>
 
@@ -380,7 +380,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
           <div className="bg-steak-charcoal rounded-3xl p-8 md:p-12 border border-steak-gold/10 ring-1 ring-white/5 shadow-2xl">
             <h2 className="text-2xl font-black text-white mb-10 uppercase tracking-tight flex items-center gap-3">
               <span className="w-1.5 h-6 bg-steak-gold rounded-full" />
-              Transfer Method
+              Payment Method
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
@@ -405,7 +405,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
               <div className="bg-steak-black/60 rounded-3xl p-8 border border-steak-gold/20 ring-1 ring-steak-gold/10 mb-8 relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-steak-gold/5 blur-3xl -mr-16 -mt-16" />
 
-                <h3 className="text-xs font-black text-steak-gold uppercase tracking-[0.3em] mb-6">Secured Transfer Details</h3>
+                <h3 className="text-xs font-black text-steak-gold uppercase tracking-[0.3em] mb-6">Payment Details</h3>
 
                 <div className="flex flex-col md:flex-row items-center gap-10">
                   <div className="flex-1 space-y-4 text-center md:text-left">
@@ -446,7 +446,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
               <div>
                 <h4 className="font-black text-steak-red uppercase tracking-widest text-[10px] mb-1">Verification Required</h4>
                 <p className="text-sm text-gray-400 font-medium">
-                  Patrons are requested to capture their transfer confirmation. Please attach this verification when finalizing your order through our digital concierge.
+                  Customers are requested to capture their payment confirmation. Please attach this screenshot when finalizing your order through Messenger.
                 </p>
               </div>
             </div>
@@ -458,7 +458,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
           <div className="bg-steak-charcoal rounded-3xl p-8 border border-steak-gold/10 ring-1 ring-white/5 shadow-2xl sticky top-32">
             <h2 className="text-2xl font-black text-white mb-8 uppercase tracking-tight flex items-center gap-3">
               <span className="w-1.5 h-6 bg-steak-gold rounded-full" />
-              Manifest Review
+              Order Review
             </h2>
 
             <div className="space-y-6 mb-10">
@@ -490,7 +490,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
 
               <div className="border-t border-steak-gold/20 pt-8">
                 <div className="flex items-center justify-between">
-                  <span className="uppercase tracking-tighter text-[10px] font-black text-gray-500">Total Investment</span>
+                  <span className="uppercase tracking-tighter text-[10px] font-black text-gray-500">Total Amount</span>
                   <span className="text-4xl font-black text-steak-gold">₱{totalPrice.toFixed(2)}</span>
                 </div>
               </div>
@@ -501,12 +501,12 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
               className="w-full h-24 bg-steak-gold text-steak-black rounded-2xl hover:bg-white transition-all duration-500 transform hover:scale-[1.02] font-black uppercase tracking-[0.2em] text-sm shadow-[0_0_50px_rgba(244,164,30,0.3)] flex items-center justify-center gap-4 relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              <span className="relative z-10">Deploy to Messenger</span>
+              <span className="relative z-10">Place Order on Messenger</span>
               <div className="h-px w-10 bg-steak-black/20 relative z-10" />
             </button>
 
             <p className="text-[9px] font-black text-gray-600 text-center mt-6 uppercase tracking-[0.3em]">
-              Encrypted Redirection to Digital Concierge Secure Channel
+              Redirecting to Messenger for Order Confirmation
             </p>
           </div>
         </div>

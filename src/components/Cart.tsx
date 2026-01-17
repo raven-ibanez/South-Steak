@@ -51,12 +51,12 @@ const Cart: React.FC<CartProps> = ({
           <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
           <span className="font-bold uppercase tracking-widest text-xs">Back to grill</span>
         </button>
-        <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase">Selection <span className="text-steak-gold">Vault</span></h1>
+        <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase">Your <span className="text-steak-gold">Cart</span></h1>
         <button
           onClick={clearCart}
           className="text-steak-red/60 hover:text-steak-red transition-colors duration-300 font-bold uppercase tracking-widest text-[10px]"
         >
-          Clear Selection
+          Clear Cart
         </button>
       </div>
 
@@ -134,7 +134,7 @@ const Cart: React.FC<CartProps> = ({
           onClick={onCheckout}
           className="w-full bg-steak-gold text-steak-black py-4 md:py-5 rounded-2xl hover:bg-white transition-all duration-300 transform hover:scale-[1.02] font-black uppercase tracking-widest text-base md:text-lg shadow-[0_0_30px_rgba(244,164,30,0.3)] flex items-center justify-center space-x-4 h-16 md:h-20"
         >
-          <span>Begin Checkout</span>
+          <span>Checkout</span>
           <div className="h-px w-8 bg-steak-black/20" />
         </button>
       </div>

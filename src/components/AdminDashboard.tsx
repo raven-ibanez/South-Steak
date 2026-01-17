@@ -257,13 +257,13 @@ const AdminDashboard: React.FC = () => {
             <div className="mx-auto w-20 h-20 bg-steak-black/40 rounded-full flex items-center justify-center mb-6 border border-white/5 ring-1 ring-white/5">
               <Lock className="h-10 w-10 text-steak-gold opacity-80" />
             </div>
-            <h1 className="text-3xl font-black text-white uppercase tracking-tighter">Vault <span className="text-steak-gold">Access</span></h1>
-            <p className="text-gray-500 mt-2 text-xs font-black uppercase tracking-[0.2em]">Authorized Personnel Only</p>
+            <h1 className="text-3xl font-black text-white uppercase tracking-tighter">Admin <span className="text-steak-gold">Login</span></h1>
+            <p className="text-gray-500 mt-2 text-xs font-black uppercase tracking-[0.2em]">Please log in to continue</p>
           </div>
 
           <form onSubmit={handleLogin}>
             <div className="mb-6">
-              <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">Access Key</label>
+              <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">Password</label>
               <input
                 type="password"
                 value={password}
@@ -281,7 +281,7 @@ const AdminDashboard: React.FC = () => {
               type="submit"
               className="w-full bg-steak-gold text-steak-black py-5 rounded-2xl hover:bg-white transition-all duration-300 font-black uppercase tracking-widest text-sm shadow-[0_0_30px_rgba(244,164,30,0.2)]"
             >
-              Verify Credentials
+              Login
             </button>
           </form>
         </div>
@@ -316,7 +316,7 @@ const AdminDashboard: React.FC = () => {
                   <span className="font-black uppercase tracking-widest text-[10px]">Back</span>
                 </button>
                 <h1 className="text-3xl font-black text-white tracking-tighter uppercase">
-                  {currentView === 'add' ? 'Forge New' : 'Refine'} <span className="text-steak-gold">Item</span>
+                  {currentView === 'add' ? 'Add New' : 'Edit'} <span className="text-steak-gold">Item</span>
                 </h1>
               </div>
               <div className="flex space-x-4">
@@ -332,7 +332,7 @@ const AdminDashboard: React.FC = () => {
                   className="px-6 py-3 bg-steak-gold text-steak-black rounded-xl hover:bg-white transition-all duration-300 flex items-center space-x-2 font-black uppercase tracking-widest text-[10px] shadow-[0_0_20px_rgba(244,164,30,0.2)]"
                 >
                   <Save className="h-4 w-4" />
-                  <span>Store Metadata</span>
+                  <span>Save Item</span>
                 </button>
               </div>
             </div>
@@ -343,7 +343,7 @@ const AdminDashboard: React.FC = () => {
           <div className="bg-steak-charcoal rounded-3xl shadow-2xl p-8 border border-steak-gold/10 ring-1 ring-white/5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
               <div className="space-y-3">
-                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2">Legacy Designation *</label>
+                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2">Item Name *</label>
                 <input
                   type="text"
                   value={formData.name || ''}
@@ -354,7 +354,7 @@ const AdminDashboard: React.FC = () => {
               </div>
 
               <div className="space-y-3">
-                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2">Base Valuation (₱) *</label>
+                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2">Base Price (₱) *</label>
                 <input
                   type="number"
                   value={formData.basePrice || ''}
@@ -365,7 +365,7 @@ const AdminDashboard: React.FC = () => {
               </div>
 
               <div className="space-y-3">
-                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2">Vault Classification *</label>
+                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2">Category *</label>
                 <select
                   value={formData.category || ''}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
@@ -389,7 +389,7 @@ const AdminDashboard: React.FC = () => {
                     <div className={`w-12 h-6 rounded-full transition-colors duration-300 ${formData.popular ? 'bg-steak-gold' : 'bg-steak-black/60'}`} />
                     <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 ${formData.popular ? 'translate-x-6' : ''}`} />
                   </div>
-                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover:text-white transition-colors">Mark as Signature Cut</span>
+                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover:text-white transition-colors">Mark as Popular</span>
                 </label>
 
                 <label className="group flex items-center space-x-4 cursor-pointer">
@@ -403,7 +403,7 @@ const AdminDashboard: React.FC = () => {
                     <div className={`w-12 h-6 rounded-full transition-colors duration-300 ${formData.available ?? true ? 'bg-steak-gold' : 'bg-steak-black/60'}`} />
                     <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 ${formData.available ?? true ? 'translate-x-6' : ''}`} />
                   </div>
-                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover:text-white transition-colors">Available in Vault</span>
+                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover:text-white transition-colors">Available</span>
                 </label>
               </div>
             </div>
@@ -412,11 +412,11 @@ const AdminDashboard: React.FC = () => {
             <div className="mb-10 p-6 bg-steak-black/40 rounded-2xl border border-steak-gold/10">
               <h3 className="text-sm font-black text-steak-gold mb-6 uppercase tracking-widest flex items-center gap-2">
                 <TrendingUp className="h-4 w-4" />
-                Limited Offer Calibration
+                Discount Settings
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
-                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2">Discount valuation (₱)</label>
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2">Discount Price (₱)</label>
                   <input
                     type="number"
                     value={formData.discountPrice || ''}
@@ -438,12 +438,12 @@ const AdminDashboard: React.FC = () => {
                       <div className={`w-12 h-6 rounded-full transition-colors duration-300 ${formData.discountActive ? 'bg-steak-gold' : 'bg-steak-black/60'}`} />
                       <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 ${formData.discountActive ? 'translate-x-6' : ''}`} />
                     </div>
-                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover:text-white transition-colors">Activate Price Override</span>
+                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover:text-white transition-colors">Activate Discount</span>
                   </label>
                 </div>
 
                 <div className="space-y-3">
-                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2">Override Terminus (Start)</label>
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2">Discount Start Date</label>
                   <input
                     type="datetime-local"
                     value={formData.discountStartDate || ''}
@@ -453,7 +453,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
 
                 <div className="space-y-3">
-                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2">Override Terminus (End)</label>
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2">Discount End Date</label>
                   <input
                     type="datetime-local"
                     value={formData.discountEndDate || ''}
@@ -468,7 +468,7 @@ const AdminDashboard: React.FC = () => {
             </div>
 
             <div className="mb-10 space-y-3">
-              <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2">Chef's Narrative *</label>
+              <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2">Description *</label>
               <textarea
                 value={formData.description || ''}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -490,14 +490,14 @@ const AdminDashboard: React.FC = () => {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-sm font-black text-steak-gold uppercase tracking-widest flex items-center gap-2">
                   <Package className="h-4 w-4" />
-                  Dimensional Variations
+                  Item Variations
                 </h3>
                 <button
                   onClick={addVariation}
                   className="flex items-center space-x-2 px-4 py-2 bg-steak-gold/10 text-steak-gold rounded-lg hover:bg-steak-gold hover:text-steak-black transition-all duration-300 font-black uppercase tracking-widest text-[10px] border border-steak-gold/20"
                 >
                   <Plus className="h-4 w-4" />
-                  <span>Expand Lineups</span>
+                  <span>Add Variation</span>
                 </button>
               </div>
 
@@ -532,14 +532,14 @@ const AdminDashboard: React.FC = () => {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-sm font-black text-steak-gold uppercase tracking-widest flex items-center gap-2">
                   <Plus className="h-4 w-4" />
-                  Complementary Assets
+                  <span>Add-ons</span>
                 </h3>
                 <button
                   onClick={addAddOn}
                   className="flex items-center space-x-2 px-4 py-2 bg-steak-gold/10 text-steak-gold rounded-lg hover:bg-steak-gold hover:text-steak-black transition-all duration-300 font-black uppercase tracking-widest text-[10px] border border-steak-gold/20"
                 >
                   <Plus className="h-4 w-4" />
-                  <span>Attach Add-on</span>
+                  <span>Add Add-on</span>
                 </button>
               </div>
 
@@ -598,7 +598,7 @@ const AdminDashboard: React.FC = () => {
                   <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
                   <span className="font-black uppercase tracking-widest text-[10px]">Dashboard</span>
                 </button>
-                <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Vault <span className="text-steak-gold">Inventory</span></h1>
+                <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Menu <span className="text-steak-gold">Items</span></h1>
               </div>
               <div className="flex items-center space-x-4">
                 {showBulkActions && (
@@ -619,7 +619,7 @@ const AdminDashboard: React.FC = () => {
                   className="flex items-center space-x-2 bg-steak-gold text-steak-black px-6 py-3 rounded-xl hover:bg-white transition-all duration-300 font-black uppercase tracking-widest text-[10px] shadow-[0_0_20px_rgba(244,164,30,0.2)]"
                 >
                   <Plus className="h-4 w-4" />
-                  <span>New Acquisition</span>
+                  <span>Add Item</span>
                 </button>
               </div>
             </div>
@@ -632,14 +632,14 @@ const AdminDashboard: React.FC = () => {
             <div className="bg-steak-charcoal rounded-3xl shadow-2xl p-8 mb-10 border border-blue-500/20 ring-1 ring-blue-500/10">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                  <h3 className="text-sm font-black text-white mb-1 uppercase tracking-widest">Mass Operations</h3>
-                  <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest">{selectedItems.length} TARGETS IDENTIFIED</p>
+                  <h3 className="text-sm font-black text-white mb-1 uppercase tracking-widest">Bulk Change</h3>
+                  <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest">{selectedItems.length} ITEMS SELECTED</p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   {/* Change Category */}
                   <div className="flex items-center space-x-3">
-                    <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Reclassify:</label>
+                    <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Category:</label>
                     <select
                       onChange={(e) => {
                         if (e.target.value) {
@@ -650,7 +650,7 @@ const AdminDashboard: React.FC = () => {
                       className="px-4 py-2 bg-steak-black/60 border border-white/5 rounded-xl text-white focus:ring-1 focus:ring-blue-500 outline-none text-[10px] font-black uppercase tracking-widest appearance-none cursor-pointer"
                       disabled={isProcessing}
                     >
-                      <option value="" className="bg-steak-charcoal">Select Logic</option>
+                      <option value="" className="bg-steak-charcoal">Select Category</option>
                       {categories.map(cat => (
                         <option key={cat.id} value={cat.id} className="bg-steak-charcoal">{cat.name}</option>
                       ))}
@@ -664,7 +664,7 @@ const AdminDashboard: React.FC = () => {
                     className="flex items-center space-x-2 bg-steak-red/10 text-steak-red px-6 py-2 rounded-xl border border-steak-red/20 hover:bg-steak-red hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-black uppercase tracking-widest text-[10px]"
                   >
                     <Trash2 className="h-4 w-4" />
-                    <span>{isProcessing ? 'Exterminating...' : 'Purge Selected'}</span>
+                    <span>{isProcessing ? 'Deleting...' : 'Delete Selected'}</span>
                   </button>
 
                   {/* Clear Selection */}
@@ -676,7 +676,7 @@ const AdminDashboard: React.FC = () => {
                     className="flex items-center space-x-2 bg-gray-500/10 text-gray-400 px-6 py-2 rounded-xl border border-white/10 hover:bg-gray-500 hover:text-white transition-all duration-300 font-black uppercase tracking-widest text-[10px]"
                   >
                     <X className="h-4 w-4" />
-                    <span>Clear Focus</span>
+                    <span>Clear Selection</span>
                   </button>
                 </div>
               </div>
@@ -702,20 +702,20 @@ const AdminDashboard: React.FC = () => {
                         </div>
                       </div>
                       <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest group-hover:text-white transition-colors">
-                        Zero In All ({menuItems.length} metadata nodes)
+                        Select All ({menuItems.length} items)
                       </span>
                     </label>
                   </div>
                   {selectedItems.length > 0 && (
                     <div className="flex items-center space-x-4">
                       <span className="text-[10px] font-black text-steak-gold uppercase tracking-widest">
-                        {selectedItems.length} SELECTIONS CAPTURED
+                        {selectedItems.length} ITEMS SELECTED
                       </span>
                       <button
                         onClick={() => setSelectedItems([])}
                         className="text-[10px] font-black text-gray-500 hover:text-white uppercase tracking-widest transition-colors duration-200"
                       >
-                        Reset Buffer
+                        Clear Selection
                       </button>
                     </div>
                   )}
@@ -729,7 +729,7 @@ const AdminDashboard: React.FC = () => {
                 <thead className="bg-steak-black/60 border-b border-white/5">
                   <tr>
                     <th className="px-8 py-5 text-left text-[10px] font-black text-gray-500 uppercase tracking-widest">
-                      Focus
+                      Select
                     </th>
                     <th className="px-8 py-5 text-left text-[10px] font-black text-gray-500 uppercase tracking-widest">Designation</th>
                     <th className="px-8 py-5 text-left text-[10px] font-black text-gray-500 uppercase tracking-widest">Classification</th>
@@ -780,22 +780,22 @@ const AdminDashboard: React.FC = () => {
                       </td>
                       <td className="px-8 py-6">
                         <div className="flex flex-col space-y-1">
-                          <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{item.variations?.length || 0} Dimensions</span>
-                          <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{item.addOns?.length || 0} Assets</span>
+                          <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{item.variations?.length || 0} Variations</span>
+                          <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{item.addOns?.length || 0} Add-ons</span>
                         </div>
                       </td>
                       <td className="px-8 py-6">
                         <div className="flex flex-col space-y-2">
                           {item.popular && (
                             <span className="inline-flex items-center px-2 py-0.5 rounded text-[8px] font-black bg-steak-red text-white uppercase tracking-widest w-fit">
-                              Signature
+                              Popular
                             </span>
                           )}
                           <span className={`inline-flex items-center px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest w-fit ${item.available
                             ? 'bg-steak-gold/10 text-steak-gold border border-steak-gold/20'
                             : 'bg-white/5 text-gray-600 border border-white/5'
                             }`}>
-                            {item.available ? 'In Vault' : 'Depleted'}
+                            {item.available ? 'Available' : 'Unavailable'}
                           </span>
                         </div>
                       </td>
@@ -863,14 +863,14 @@ const AdminDashboard: React.FC = () => {
                     <div className="flex space-x-3">
                       {item.popular && (
                         <span className="inline-flex items-center px-4 py-1 rounded text-[8px] font-black bg-steak-red text-white uppercase tracking-widest">
-                          Signature
+                          Popular
                         </span>
                       )}
                       <span className={`inline-flex items-center px-4 py-1 rounded text-[8px] font-black uppercase tracking-widest ${item.available
                         ? 'bg-steak-gold/10 text-steak-gold border border-steak-gold/20'
                         : 'bg-white/5 text-gray-600 border border-white/5'
                         }`}>
-                        {item.available ? 'In Vault' : 'Depleted'}
+                        {item.available ? 'Available' : 'Unavailable'}
                       </span>
                     </div>
                     <div className="flex space-x-3">
@@ -922,7 +922,7 @@ const AdminDashboard: React.FC = () => {
                   <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
                   <span className="font-black uppercase tracking-widest text-[10px]">Dashboard</span>
                 </button>
-                <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Vault <span className="text-steak-gold">Protocol</span></h1>
+                <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Site <span className="text-steak-gold">Settings</span></h1>
               </div>
             </div>
           </div>
@@ -945,21 +945,21 @@ const AdminDashboard: React.FC = () => {
               <div className="w-12 h-12 bg-steak-gold rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(244,164,30,0.3)]">
                 <Coffee className="h-6 w-6 text-steak-black" />
               </div>
-              <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Vault <span className="text-steak-gold">Command</span></h1>
+              <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Admin <span className="text-steak-gold">Dashboard</span></h1>
             </div>
             <div className="flex items-center space-x-8">
               <a
                 href="/"
                 className="text-[10px] font-black text-gray-500 hover:text-white uppercase tracking-widest transition-colors duration-300 hidden md:block"
               >
-                Inspect Frontline
+                View Site
               </a>
               <button
                 onClick={handleLogout}
                 className="flex items-center space-x-3 text-gray-500 hover:text-steak-red transition-all duration-300 font-black uppercase tracking-widest text-[10px] group"
               >
                 <LogOut className="h-5 w-5 group-hover:rotate-12 transition-transform" />
-                <span>Seal Vault</span>
+                <span>Logout</span>
               </button>
             </div>
           </div>
@@ -977,7 +977,7 @@ const AdminDashboard: React.FC = () => {
               </div>
               <TrendingUp className="h-5 w-5 text-gray-700" />
             </div>
-            <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-2 relative z-10">Total Inventory</h3>
+            <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-2 relative z-10">Total Items</h3>
             <p className="text-4xl font-black text-white tracking-tighter group-hover:text-steak-gold transition-colors relative z-10">{totalItems}</p>
           </div>
 
@@ -989,7 +989,7 @@ const AdminDashboard: React.FC = () => {
               </div>
               <TrendingUp className="h-5 w-5 text-gray-700" />
             </div>
-            <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-2 relative z-10">Live Deployment</h3>
+            <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-2 relative z-10">Available Items</h3>
             <p className="text-4xl font-black text-white tracking-tighter group-hover:text-green-500 transition-colors relative z-10">{availableItems}</p>
           </div>
 
@@ -1001,7 +1001,7 @@ const AdminDashboard: React.FC = () => {
               </div>
               <TrendingUp className="h-5 w-5 text-gray-700" />
             </div>
-            <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-2 relative z-10">Signature Cuts</h3>
+            <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-2 relative z-10">Popular Items</h3>
             <p className="text-4xl font-black text-white tracking-tighter group-hover:text-steak-red transition-colors relative z-10">{popularItems}</p>
           </div>
 
@@ -1013,8 +1013,8 @@ const AdminDashboard: React.FC = () => {
               </div>
               <TrendingUp className="h-5 w-5 text-gray-700" />
             </div>
-            <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-2 relative z-10">System Integrity</h3>
-            <p className="text-4xl font-black text-white tracking-tighter group-hover:text-blue-500 transition-colors relative z-10">SYNC</p>
+            <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-2 relative z-10">System Status</h3>
+            <p className="text-4xl font-black text-white tracking-tighter group-hover:text-blue-500 transition-colors relative z-10">ACTIVE</p>
           </div>
         </div>
 
@@ -1023,7 +1023,7 @@ const AdminDashboard: React.FC = () => {
           <div className="bg-steak-charcoal rounded-3xl shadow-2xl p-10 border border-steak-gold/10 ring-1 ring-white/5">
             <h3 className="text-sm font-black text-steak-gold mb-8 uppercase tracking-widest flex items-center gap-3">
               <Settings className="h-5 w-5" />
-              Rapid Logistics
+              Quick Actions
             </h3>
             <div className="grid grid-cols-1 gap-4">
               <button
@@ -1034,7 +1034,7 @@ const AdminDashboard: React.FC = () => {
                   <div className="p-3 bg-steak-gold/10 rounded-xl group-hover:bg-white/10">
                     <Plus className="h-6 w-6" />
                   </div>
-                  <span className="font-black uppercase tracking-widest text-[10px]">Initialize New Item</span>
+                  <span className="font-black uppercase tracking-widest text-[10px]">Add New Item</span>
                 </div>
                 <ArrowLeft className="h-5 w-5 rotate-180 opacity-0 group-hover:opacity-100 transition-all" />
               </button>
@@ -1047,7 +1047,7 @@ const AdminDashboard: React.FC = () => {
                   <div className="p-3 bg-white/5 rounded-xl">
                     <Package className="h-6 w-6" />
                   </div>
-                  <span className="font-black uppercase tracking-widest text-[10px]">Registry Management</span>
+                  <span className="font-black uppercase tracking-widest text-[10px]">Menu Items</span>
                 </div>
                 <ArrowLeft className="h-5 w-5 rotate-180 opacity-0 group-hover:opacity-100 transition-all" />
               </button>
@@ -1060,7 +1060,7 @@ const AdminDashboard: React.FC = () => {
                   <div className="p-3 bg-white/5 rounded-xl">
                     <FolderOpen className="h-6 w-6" />
                   </div>
-                  <span className="font-black uppercase tracking-widest text-[10px]">Classification Matrix</span>
+                  <span className="font-black uppercase tracking-widest text-[10px]">Categories</span>
                 </div>
                 <ArrowLeft className="h-5 w-5 rotate-180 opacity-0 group-hover:opacity-100 transition-all" />
               </button>
@@ -1073,7 +1073,7 @@ const AdminDashboard: React.FC = () => {
                   <div className="p-3 bg-white/5 rounded-xl">
                     <CreditCard className="h-6 w-6" />
                   </div>
-                  <span className="font-black uppercase tracking-widest text-[10px]">Fiscal Gateways</span>
+                  <span className="font-black uppercase tracking-widest text-[10px]">Payment Methods</span>
                 </div>
                 <ArrowLeft className="h-5 w-5 rotate-180 opacity-0 group-hover:opacity-100 transition-all" />
               </button>
@@ -1086,7 +1086,7 @@ const AdminDashboard: React.FC = () => {
                   <div className="p-3 bg-white/5 rounded-xl">
                     <Settings className="h-6 w-6" />
                   </div>
-                  <span className="font-black uppercase tracking-widest text-[10px]">Global Parameters</span>
+                  <span className="font-black uppercase tracking-widest text-[10px]">Site Settings</span>
                 </div>
                 <ArrowLeft className="h-5 w-5 rotate-180 opacity-0 group-hover:opacity-100 transition-all" />
               </button>
@@ -1097,7 +1097,7 @@ const AdminDashboard: React.FC = () => {
             <div className="absolute top-0 right-0 w-64 h-64 bg-steak-gold/5 rounded-full -mr-32 -mt-32 blur-3xl opacity-50" />
             <h3 className="text-sm font-black text-steak-gold mb-8 uppercase tracking-widest flex items-center gap-3 relative z-10">
               <Layers className="h-5 w-5" />
-              Vault Distribution
+              Category Overview
             </h3>
             <div className="space-y-6 relative z-10">
               {categoryCounts.map((category) => (
