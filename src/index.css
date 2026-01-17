@@ -2,14 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ramen Yard Custom Styles */
-/* Minimal helpers for ramen palette when needed outside tailwind tokens */
-.bg-ramen-cream { background-color: #FFF3E0; }
-.bg-ramen-beige { background-color: #F7E7CE; }
-.text-ramen-red { color: #D7263D; }
-.text-ramen-dark { color: #0B0A0A; }
-.border-ramen-sesame { border-color: #D1C7B7; }
-.ring-ramen-gold { --tw-ring-color: #E0A106; }
+/* South Steak Custom Styles */
+body {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.bg-steak-gold { background-color: #F4A41E; }
+.text-steak-gold { color: #F4A41E; }
+.text-steak-red { color: #D91E27; }
+.border-steak-gold { border-color: #F4A41E; }
+
+.bg-pattern {
+  background-image: radial-gradient(#F4A41E 0.5px, transparent 0.5px), radial-gradient(#F4A41E 0.5px, #000000 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.1;
+}
 
 /* Hide scrollbar for mobile nav */
 .scrollbar-hide {

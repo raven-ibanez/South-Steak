@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Edit, Trash2, Save, X, ArrowLeft, GripVertical } from 'lucide-react';
+import { Plus, Edit, Trash2, ArrowLeft, GripVertical } from 'lucide-react';
 import { useCategories, Category } from '../hooks/useCategories';
 
 interface CategoryManagerProps {
@@ -7,7 +7,7 @@ interface CategoryManagerProps {
 }
 
 const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
-  const { categories, addCategory, updateCategory, deleteCategory, reorderCategories } = useCategories();
+  const { categories, addCategory, updateCategory, deleteCategory } = useCategories();
   const [currentView, setCurrentView] = useState<'list' | 'add' | 'edit'>('list');
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   const [formData, setFormData] = useState({
@@ -103,116 +103,116 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
   // Form View (Add/Edit)
   if (currentView === 'add' || currentView === 'edit') {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="bg-white shadow-sm border-b">
+      <div className="min-h-screen bg-steak-black">
+        <div className="bg-steak-charcoal shadow-2xl border-b border-white/5 sticky top-0 z-30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              <div className="flex items-center space-x-4">
+            <div className="flex items-center justify-between h-20">
+              <div className="flex items-center space-x-6">
                 <button
                   onClick={handleCancel}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-black transition-colors duration-200"
+                  className="flex items-center space-x-3 text-gray-500 hover:text-white transition-all duration-300 group"
                 >
-                  <ArrowLeft className="h-5 w-5" />
-                  <span>Back</span>
+                  <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+                  <span className="font-black uppercase tracking-widest text-[10px]">Back</span>
                 </button>
-                <h1 className="text-2xl font-playfair font-semibold text-black">
-                  {currentView === 'add' ? 'Add New Category' : 'Edit Category'}
+                <h1 className="text-3xl font-black text-white tracking-tighter uppercase">
+                  {currentView === 'add' ? 'New' : 'Refine'} <span className="text-steak-gold">Classification</span>
                 </h1>
               </div>
-              <div className="flex space-x-3">
+              <div className="flex space-x-4">
                 <button
                   onClick={handleCancel}
-                  className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-2"
+                  className="px-6 py-2.5 bg-white/5 text-gray-400 hover:text-white rounded-xl border border-white/5 transition-all duration-300 font-black uppercase tracking-widest text-[10px]"
                 >
-                  <X className="h-4 w-4" />
-                  <span>Cancel</span>
+                  Discard
                 </button>
                 <button
                   onClick={handleSaveCategory}
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 flex items-center space-x-2"
+                  className="px-8 py-2.5 bg-steak-gold text-steak-black rounded-xl hover:bg-white transition-all duration-300 font-black uppercase tracking-widest text-[10px] shadow-[0_0_20px_rgba(244,164,30,0.2)]"
                 >
-                  <Save className="h-4 w-4" />
-                  <span>Save</span>
+                  Authorize Updates
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="max-w-2xl mx-auto px-4 py-8">
-          <div className="bg-white rounded-xl shadow-sm p-8">
-            <div className="space-y-6">
+        <div className="max-w-2xl mx-auto px-4 py-16">
+          <div className="bg-steak-charcoal rounded-3xl shadow-2xl p-10 border border-steak-gold/10 ring-1 ring-white/5">
+            <div className="space-y-10">
               <div>
-                <label className="block text-sm font-medium text-black mb-2">Category Name *</label>
+                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Category Designation *</label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleNameChange(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                  className="w-full px-6 py-4 bg-steak-black/60 border border-white/5 rounded-2xl text-white focus:ring-2 focus:ring-steak-gold outline-none font-bold tracking-tight placeholder-white/10"
                   placeholder="Enter category name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-black mb-2">Category ID *</label>
+                <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">System Identity *</label>
                 <input
                   type="text"
                   value={formData.id}
                   onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                  className="w-full px-6 py-4 bg-steak-black/60 border border-white/5 rounded-2xl text-white focus:ring-2 focus:ring-steak-gold outline-none font-bold tracking-tight placeholder-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="kebab-case-id"
                   disabled={currentView === 'edit'}
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  {currentView === 'edit' 
-                    ? 'Category ID cannot be changed after creation'
-                    : 'Use kebab-case format (e.g., "hot-drinks", "cold-beverages")'
+                <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-3 ml-2">
+                  {currentView === 'edit'
+                    ? 'PROTECTED: IDENTITY CANNOT BE MODIFIED'
+                    : 'LOGIC: hot-drinks, signature-cuts, etc.'
                   }
                 </p>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-black mb-2">Icon *</label>
-                <div className="flex items-center space-x-3">
-                  <input
-                    type="text"
-                    value={formData.icon}
-                    onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder="Enter emoji or icon"
-                  />
-                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
-                    {formData.icon}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Visual Anchor *</label>
+                  <div className="flex items-center space-x-4">
+                    <input
+                      type="text"
+                      value={formData.icon}
+                      onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
+                      className="flex-1 px-6 py-4 bg-steak-black/60 border border-white/5 rounded-2xl text-white focus:ring-2 focus:ring-steak-gold outline-none font-bold text-center"
+                      placeholder="Emoji"
+                    />
+                    <div className="w-16 h-16 bg-steak-black/40 rounded-2xl border border-white/5 flex items-center justify-center text-3xl shadow-inner">
+                      {formData.icon}
+                    </div>
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">
-                  Use an emoji or icon character (e.g., ☕, 🧊, 🫖, 🥐)
-                </p>
+
+                <div>
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest ml-2 mb-3">Logic Weight</label>
+                  <input
+                    type="number"
+                    value={formData.sort_order}
+                    onChange={(e) => setFormData({ ...formData, sort_order: Number(e.target.value) })}
+                    className="w-full px-6 py-4 bg-steak-black/60 border border-white/5 rounded-2xl text-white focus:ring-2 focus:ring-steak-gold outline-none font-bold tracking-tight"
+                    placeholder="0"
+                  />
+                  <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-3 ml-2">
+                    Hierarchy priority
+                  </p>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-black mb-2">Sort Order</label>
-                <input
-                  type="number"
-                  value={formData.sort_order}
-                  onChange={(e) => setFormData({ ...formData, sort_order: Number(e.target.value) })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder="0"
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Lower numbers appear first in the menu
-                </p>
-              </div>
-
-              <div className="flex items-center">
-                <label className="flex items-center space-x-2">
+              <div className="flex items-center pt-4">
+                <label className="relative flex items-center cursor-pointer group">
                   <input
                     type="checkbox"
                     checked={formData.active}
                     onChange={(e) => setFormData({ ...formData, active: e.target.checked })}
-                    className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                    className="sr-only"
                   />
-                  <span className="text-sm font-medium text-black">Active Category</span>
+                  <div className={`w-14 h-8 rounded-full transition-all duration-500 border-2 ${formData.active ? 'bg-steak-gold/20 border-steak-gold' : 'bg-steak-black border-white/10'}`}>
+                    <div className={`absolute top-1 left-1 w-6 h-6 rounded-full transition-all duration-500 ${formData.active ? 'translate-x-6 bg-steak-gold' : 'bg-gray-600'}`}></div>
+                  </div>
+                  <span className="ml-4 text-[10px] font-black text-white uppercase tracking-[0.2em] group-hover:text-steak-gold transition-colors">Manifest Active</span>
                 </label>
               </div>
             </div>
@@ -224,87 +224,95 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
 
   // List View
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm border-b">
+    <div className="min-h-screen bg-steak-black">
+      <div className="bg-steak-charcoal shadow-2xl border-b border-white/5 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-between h-24">
+            <div className="flex items-center space-x-6">
               <button
                 onClick={onBack}
-                className="flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200"
+                className="flex items-center space-x-3 text-gray-500 hover:text-white transition-all duration-300 group"
               >
-                <ArrowLeft className="h-5 w-5" />
-                <span>Dashboard</span>
+                <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+                <span className="font-black uppercase tracking-widest text-[10px]">Command Center</span>
               </button>
-              <h1 className="text-2xl font-playfair font-semibold text-black">Manage Categories</h1>
+              <h1 className="text-3xl font-black text-white tracking-tighter uppercase">Classification <span className="text-steak-gold">Matrix</span></h1>
             </div>
             <button
               onClick={handleAddCategory}
-              className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
+              className="flex items-center space-x-3 bg-steak-gold text-steak-black px-8 py-3 rounded-xl hover:bg-white transition-all duration-300 font-black uppercase tracking-widest text-[10px] shadow-[0_0_30px_rgba(244,164,30,0.2)]"
             >
               <Plus className="h-4 w-4" />
-              <span>Add Category</span>
+              <span>Expand Map</span>
             </button>
           </div>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-          <div className="p-6">
-            <h2 className="text-lg font-playfair font-medium text-black mb-4">Categories</h2>
-            
+      <div className="max-w-4xl mx-auto px-4 py-16">
+        <div className="bg-steak-charcoal rounded-3xl shadow-2xl overflow-hidden border border-white/5">
+          <div className="p-10">
+            <div className="flex items-center justify-between mb-10">
+              <h2 className="text-sm font-black text-steak-gold uppercase tracking-[0.3em]">Logical Strata</h2>
+              <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest bg-steak-black px-4 py-1.5 rounded-full border border-white/5">
+                {categories.length} Nodes Active
+              </span>
+            </div>
+
             {categories.length === 0 ? (
-              <div className="text-center py-8">
-                <p className="text-gray-500 mb-4">No categories found</p>
+              <div className="text-center py-20 bg-steak-black/20 rounded-3xl border border-dashed border-white/5">
+                <p className="text-gray-600 font-black uppercase tracking-widest text-[10px] mb-8">No logical units identified</p>
                 <button
                   onClick={handleAddCategory}
-                  className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200"
+                  className="bg-steak-gold/10 text-steak-gold px-8 py-3 rounded-xl border border-steak-gold/20 hover:bg-steak-gold hover:text-steak-black transition-all duration-300 font-black uppercase tracking-widest text-[10px]"
                 >
-                  Add First Category
+                  Initiate First Node
                 </button>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {categories.map((category) => (
                   <div
                     key={category.id}
-                    className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                    className="flex items-center justify-between p-6 bg-steak-black/40 border border-white/5 rounded-2xl hover:border-steak-gold/40 transition-all duration-500 group"
                   >
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-2 text-gray-400 cursor-move">
-                        <GripVertical className="h-4 w-4" />
-                        <span className="text-sm text-gray-500">#{category.sort_order}</span>
+                    <div className="flex items-center space-x-6">
+                      <div className="flex items-center space-x-3 text-gray-700 group-hover:text-steak-gold transition-colors">
+                        <GripVertical className="h-5 w-5 cursor-move" />
+                        <span className="text-[10px] font-black uppercase tracking-tighter">ORD-{category.sort_order}</span>
                       </div>
-                      <div className="text-2xl">{category.icon}</div>
+                      <div className="w-16 h-16 bg-steak-black/60 rounded-2xl border border-white/5 flex items-center justify-center text-3xl shadow-inner group-hover:scale-110 transition-transform duration-500">
+                        {category.icon}
+                      </div>
                       <div>
-                        <h3 className="font-medium text-black">{category.name}</h3>
-                        <p className="text-sm text-gray-500">ID: {category.id}</p>
+                        <h3 className="text-lg font-black text-white uppercase tracking-tight group-hover:text-steak-gold transition-colors">{category.name}</h3>
+                        <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-1">ID: {category.id}</p>
                       </div>
                     </div>
-                    
-                    <div className="flex items-center space-x-3">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        category.active 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-red-100 text-red-800'
-                      }`}>
-                        {category.active ? 'Active' : 'Inactive'}
+
+                    <div className="flex items-center space-x-4">
+                      <span className={`px-4 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.2em] border transition-all duration-500 ${category.active
+                        ? 'bg-steak-gold/10 text-steak-gold border-steak-gold/20'
+                        : 'bg-white/5 text-gray-600 border-white/5'
+                        }`}>
+                        {category.active ? 'Operational' : 'Deactivated'}
                       </span>
-                      
-                      <button
-                        onClick={() => handleEditCategory(category)}
-                        className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors duration-200"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </button>
-                      
-                      <button
-                        onClick={() => handleDeleteCategory(category.id)}
-                        className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors duration-200"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
+
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => handleEditCategory(category)}
+                          className="p-4 bg-white/5 text-gray-500 hover:text-white hover:bg-white/10 rounded-xl border border-white/5 transition-all duration-300"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </button>
+
+                        <button
+                          onClick={() => handleDeleteCategory(category.id)}
+                          className="p-4 bg-steak-red/5 text-steak-red/40 hover:text-steak-red hover:bg-steak-red/10 rounded-xl border border-steak-red/10 transition-all duration-300"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
