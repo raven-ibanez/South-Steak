@@ -99,7 +99,7 @@ Thank you for choosing South Steak. Exceptionally grilled for you. �
     `.trim();
 
     const encodedMessage = encodeURIComponent(orderDetails);
-    const messengerUrl = `https://m.me/61578847334426?text=${encodedMessage}`;
+    const messengerUrl = `https://m.me/722062474328283?text=${encodedMessage}`;
 
     window.open(messengerUrl, '_blank');
 
